@@ -1,0 +1,16 @@
+[project]
+name = "cs489-a3-student"
+version = "0.1.0"
+description = "Frozen BERT constituent probes for CS 489 Assignment 3"
+requires-python = "==3.12.12"
+dependencies = [
+    "torch==2.7.1",
+    "transformers==4.51.3",
+    "numpy==2.2.6",
+    "PyYAML==6.0.3",
+    "matplotlib==3.10.8",
+    "pytest==8.4.2",
+]
+
+[tool.uv]
+package = false

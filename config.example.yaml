@@ -1,0 +1,43 @@
+schema_version: 1
+protocol:
+  version: cs489-a3-v1
+  data_schema: sentence-word-spans-v1
+  model_id: google-bert/bert-base-cased
+  model_revision: cd5ef92a9fb2f889e972770a36d4ed042daf221e
+  tokenizer_id: google-bert/bert-base-cased
+  tokenizer_revision: cd5ef92a9fb2f889e972770a36d4ed042daf221e
+  layers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  seeds: [0, 1, 2, 3, 4]
+  hidden_size: 768
+  probe_hidden_size: 1024
+  probe: Linear(768,1024,bias)-ReLU-Linear(1024,C,bias)
+  pooling: full-sentence-wordpiece-mean
+  feature_dtype: float32
+  padding_side: right
+  max_length: 512
+  frozen_encoder: true
+  encoder_eval: true
+  optimizer: Adam
+  learning_rate: 0.001
+  adam_betas: [0.9, 0.999]
+  adam_eps: 1.0e-8
+  weight_decay: 0.0
+  batch_size: 256
+  epochs: 10
+  loss: cross_entropy
+  selection: highest-full-dev-accuracy-earliest-tie
+paths:
+  train: data/train.jsonl
+  dev: data/dev.jsonl
+  labels: data/labels.json
+  data_manifest: data/manifest.json
+  artifacts: artifacts/part1
+  cache: cache
+  results: results
+runtime:
+  device: cpu
+  feature_batch_size: 8
+  eval_batch_size: 32
+  num_threads: 1
+  deterministic: true
+  local_files_only: false

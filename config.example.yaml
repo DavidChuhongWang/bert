@@ -35,9 +35,9 @@ paths:
   cache: cache
   results: results
 runtime:
-  device: cpu
+  device: cuda:0
   feature_batch_size: 8
-  eval_batch_size: 32
-  num_threads: 1
+  eval_batch_size: 256
+  num_threads: 2
   deterministic: true
   local_files_only: false
